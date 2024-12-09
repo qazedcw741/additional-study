@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const port = 3000
 var cors = require('cors')
+const post = require('./router/routs')
+
+app.use('/post_page', post);
 
 // app.use(cors())
 app.use(express.urlencoded({extended: false}));
@@ -9,6 +12,11 @@ app.use(express.urlencoded({extended: false}));
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
+
+
+app.get('/post_page', (req, res) => {
+  res.sendFile(__dirname + '/routs.html')
+})
 
 // app.get('/', (req, res) => {
 //   res.sendFile(__dirname + '/index.html')
